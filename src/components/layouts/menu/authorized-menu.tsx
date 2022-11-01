@@ -21,7 +21,7 @@ export default function AuthorizedMenu() {
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="flex items-center focus:outline-none">
         <Avatar
-          src={me?.profile?.avatar?.thumbnail ?? avatarPlaceholder}
+          src={me?.profile?.avatar ?? avatarPlaceholder}
           title="user name"
         />
         <span className="sr-only">{t('user-avatar')}</span>

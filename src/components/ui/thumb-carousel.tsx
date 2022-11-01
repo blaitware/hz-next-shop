@@ -106,7 +106,7 @@ export const ThumbsCarousel: React.FC<Props> = ({ gallery }) => {
               className="flex items-center justify-center cursor-pointer rounded overflow-hidden border border-border-200 border-opacity-75 hover:opacity-75"
             >
               <Image
-                src={item?.thumbnail ?? productPlaceholder}
+                src={item ?? productPlaceholder}
                 alt={`Product thumb gallery ${item._id}`}
                 width={80}
                 height={80}

@@ -17,7 +17,10 @@ const Popup: React.FC<ProductPopupProps> = ({ product, loading }) => {
   const { t } = useTranslation('common');
   const [showStickyShortDetails] = useAtom(stickyShortDetailsAtom);
 
-  const { id, related_products } = product ?? {};
+  const { _id, related_products } = product ?? {};
+
+  console.log(product);
+  
 
   if (loading || !product)
     return (
@@ -38,7 +41,7 @@ const Popup: React.FC<ProductPopupProps> = ({ product, loading }) => {
           <div className="p-5 md:pb-10 lg:p-14 xl:p-16">
             <RelatedProducts
               products={related_products}
-              currentProductId={id}
+              currentProductId={_id}
             />
           </div>
         )}

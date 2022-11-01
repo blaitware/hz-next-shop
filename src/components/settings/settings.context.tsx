@@ -13,11 +13,7 @@ const initialState = {
   siteTitle: siteSettings.name,
   siteSubtitle: siteSettings.description,
   currency: siteSettings.currencyCode,
-  logo: {
-    id: 1,
-    thumbnail: siteSettings.logo,
-    original: siteSettings.logo,
-  },
+  logo: siteSettings.logo,
   seo: {
     metaTitle: '',
     metaDescription: '',
