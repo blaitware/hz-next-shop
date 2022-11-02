@@ -10,7 +10,7 @@ const PromotionSliders: React.FC = () => {
   const { homePage } = useHomepage();
 
   const group = useMemo(
-    () => homePage?._id as string,
+    () => homePage?.slug as string,
     [homePage]
   );
   const { data, error } = useGroupQuery(group?.toString()!);
