@@ -11,7 +11,6 @@ module.exports = withPWA({
   },
   images: {
     domains: [
-      'hz-api.herokuapp.com',
       'hz.mcjovial.dev',
       'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
       'lh3.googleusercontent.com',
