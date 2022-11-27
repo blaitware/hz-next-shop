@@ -12,10 +12,17 @@ module.exports = withPWA({
   images: {
     domains: [
       'hz.mcjovial.dev',
-      'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
-      'lh3.googleusercontent.com',
-      'localhost',
+      'hz-api.herokuapp.com',
+      '151.106.113.197',
+      'via.placeholder.com',
+      'res.cloudinary.com',
+      's3.amazonaws.com',
+      '18.141.64.26',
       '127.0.0.1',
+      'localhost',
+      'picsum.photos',
+      'lh3.googleusercontent.com',
+      'api.teamxmv.com',
     ],
   },
   ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
