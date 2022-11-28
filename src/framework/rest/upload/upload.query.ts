@@ -1,19 +1,19 @@
-import { CoreApi } from '@framework/utils/core-api';
-import { API_ENDPOINTS } from '@framework/utils/endpoints';
-import { useMutation } from 'react-query';
+import Base from '@framework/repositories/base';
 
-const UploadService = new CoreApi(API_ENDPOINTS.UPLOAD);
-
-export const useUploadMutation = () => {
-  return useMutation((input: any) => {
+class Upload extends Base<any, any> {
+  upload = async (url: string, variables: any) => {
     let formData = new FormData();
-    input.forEach((attachment: any) => {
-      formData.append('attachment[]', attachment);
+    variables.forEach((attachment: any) => {
+      formData.append("attachment", attachment);
     });
-    return UploadService.create(formData, {
+    const options = {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
-    });
-  });
-};
+    };
+    const response = await this.http(url, "post", formData, options);
+    return response.data;
+  };
+}
+
+export default new Upload();

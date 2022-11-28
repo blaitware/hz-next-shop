@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import Alert from '@components/ui/alert';
 import StripePayment from '@components/checkout/payment/stripe';
+import BankTransfer from '@components/checkout/payment/bank-transfer';
 import CashOnDelivery from '@components/checkout/payment/cash-on-delivery';
 import { useAtom } from 'jotai';
 import { paymentGatewayAtom, PaymentMethodName } from '@store/checkout';
@@ -32,6 +33,12 @@ const AVAILABLE_PAYMENT_METHODS_MAP: Record<
     value: 'CASH_ON_DELIVERY',
     icon: '',
     component: CashOnDelivery,
+  },
+  BANK_TRANSFER: {
+    name: 'Bank Transfer',
+    value: 'BANK_TRANSFER',
+    icon: '',
+    component: BankTransfer,
   },
 };
 

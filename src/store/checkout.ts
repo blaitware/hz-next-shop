@@ -26,12 +26,12 @@ export const defaultCheckout: CheckoutState = {
   billing_address: null,
   shipping_address: null,
   delivery_time: null,
-  payment_gateway: 'STRIPE',
+  payment_gateway: 'BANK_TRANSFER',
   customer_contact: '',
   verified_response: null,
   coupon: null,
 };
-export type PaymentMethodName = 'CASH_ON_DELIVERY' | 'STRIPE';
+export type PaymentMethodName = 'BANK_TRANSFER' | 'CASH_ON_DELIVERY' | 'STRIPE';
 
 // Original atom.
 export const checkoutAtom = atomWithStorage(CHECKOUT, defaultCheckout);
@@ -71,6 +71,13 @@ export const verifiedTokenAtom = atom(
   (get, set, data: string) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, token: data });
+  }
+);
+export const popAtom = atom(
+  (get) => get(checkoutAtom).pop,
+  (get, set, data: string) => {
+    const prev = get(checkoutAtom);
+    return set(checkoutAtom, { ...prev, pop: data });
   }
 );
 export const customerContactAtom = atom(

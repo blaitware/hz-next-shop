@@ -7,7 +7,7 @@ export const API_ENDPOINTS: Record<string, string> = {
   CATEGORY: 'categories',
   PARENT_CATEGORIES: 'categories',
   TYPE: 'types',
-  UPLOAD: 'attachments',
+  UPLOAD: 'attachments/images',
   ORDERS: 'orders',
   ORDER_STATUS: 'order-status',
   LOGIN: 'token',

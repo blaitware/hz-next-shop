@@ -1,11 +1,16 @@
+import Button from '@components/ui/button';
+import { popAtom } from '@store/checkout';
+import { useAtom } from 'jotai';
+import { useTranslation } from 'next-i18next';
+import { Controller, useForm } from 'react-hook-form';
 import { UploadIcon } from '@components/icons/upload-icon';
-import { useEffect, useState, useCallback } from 'react';
-import { useDropzone, FileWithPath } from 'react-dropzone';
+import { useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useUploadMutation } from '@framework/upload/use-upload.mutation';
 import Spinner from '@components/ui/loaders/spinner/spinner';
-import { useTranslation } from 'next-i18next';
 import { CloseIcon } from '@components/icons/close-icon';
 
+// ******
 const getPreviewImage = (value: any) => {
   let images: any[] = [];
   if (value) {
@@ -13,9 +18,11 @@ const getPreviewImage = (value: any) => {
   }
   return images;
 };
-export default function Uploader({ onChange, value, multiple }: any) {
+
+export function Uploader({ onChange, value, multiple }: any) {
   const { t } = useTranslation('common');
   const [files, setFiles] = useState<any[]>(getPreviewImage(value));
+  const [_, setPop] = useAtom(popAtom);
   const { mutate: upload, isLoading: loading } = useUploadMutation();
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -35,6 +42,7 @@ export default function Uploader({ onChange, value, multiple }: any) {
                 mergedData = data[0];
                 setFiles(data);
               }
+              setPop(mergedData);
               if (onChange) {
                 onChange(mergedData);
               }
@@ -118,3 +126,32 @@ export default function Uploader({ onChange, value, multiple }: any) {
     </section>
   );
 }
+// *****
+
+interface FileInputProps {
+  control: any;
+  name: string;
+}
+
+const FileInput = ({ control, name }: FileInputProps) => {
+  return (
+    <Controller
+      control={control}
+      name={name}
+      defaultValue={[]}
+      render={({ field: { ref, ...rest } }) => <Uploader {...rest} />}
+    />
+  );
+};
+
+const BankTransfer: React.FC = () => {
+  const { control } = useForm();
+
+  return (
+    <>
+      <FileInput control={control} name="pop" />
+    </>
+  );
+};
+
+export default BankTransfer;

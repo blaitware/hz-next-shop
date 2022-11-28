@@ -58,7 +58,7 @@ export class CoreApi {
   findOne(id: NumberOrString) {
     return this.http.get(`${this._base_path}/${id}`);
   }
-  create(data: any, options?: any) {
+  create(data: any, options?: any) {    
     return this.http
       .post(this._base_path, data, options)
       .then((res) => res.data);

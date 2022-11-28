@@ -36,6 +36,7 @@ export const PlaceOrderAction: React.FC = (props) => {
       customer_contact,
       payment_gateway,
       token,
+      pop,
     },
   ] = useAtom(checkoutAtom);
   const [discount] = useAtom(discountAtom);
@@ -97,7 +98,11 @@ export const PlaceOrderAction: React.FC = (props) => {
       //@ts-ignore
       input.token = token;
     }
-
+    if (payment_gateway === 'BANK_TRANSFER') {
+      //@ts-ignore
+      input.pop = pop;
+    }
+    
     delete input.billing_address.__typename;
     delete input.shipping_address.__typename;
     createOrder(input, {
