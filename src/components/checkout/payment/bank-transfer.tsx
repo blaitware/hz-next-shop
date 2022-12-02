@@ -151,7 +151,7 @@ const BankTransfer: React.FC = () => {
     <>
       <div className="text-base font-semibold mb-5 block">
         <small className='text-sm text-body block'>Bank Name: Zenith Bank</small>
-        <small className='text-sm text-body block'>Account Name: Heartszibah Int'l</small>
+        <small className='text-sm text-body block'>Account Name: Heartszibah Int&apos;l</small>
         <small className='text-sm text-body block'>Account Number: 0987654321</small>
       </div>
       <FileInput control={control} name="pop" />
