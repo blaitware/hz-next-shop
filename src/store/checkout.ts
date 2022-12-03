@@ -31,7 +31,7 @@ export const defaultCheckout: CheckoutState = {
   verified_response: null,
   coupon: null,
 };
-export type PaymentMethodName = 'BANK_TRANSFER' | 'CASH_ON_DELIVERY' | 'STRIPE';
+export type PaymentMethodName = 'BANK_TRANSFER';
 
 // Original atom.
 export const checkoutAtom = atomWithStorage(CHECKOUT, defaultCheckout);

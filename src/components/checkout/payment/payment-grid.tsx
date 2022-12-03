@@ -22,18 +22,18 @@ const AVAILABLE_PAYMENT_METHODS_MAP: Record<
   PaymentMethodName,
   PaymentMethodInformation
 > = {
-  STRIPE: {
-    name: 'Stripe',
-    value: 'STRIPE',
-    icon: '/payment/stripe.png',
-    component: StripePayment,
-  },
-  CASH_ON_DELIVERY: {
-    name: 'Cash On Delivery',
-    value: 'CASH_ON_DELIVERY',
-    icon: '',
-    component: CashOnDelivery,
-  },
+  // STRIPE: {
+  //   name: 'Stripe',
+  //   value: 'STRIPE',
+  //   icon: '/payment/stripe.png',
+  //   component: StripePayment,
+  // },
+  // CASH_ON_DELIVERY: {
+  //   name: 'Cash On Delivery',
+  //   value: 'CASH_ON_DELIVERY',
+  //   icon: '',
+  //   component: CashOnDelivery,
+  // },
   BANK_TRANSFER: {
     name: 'Bank Transfer',
     value: 'BANK_TRANSFER',
