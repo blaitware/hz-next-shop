@@ -47,7 +47,7 @@ const PaymentGrid: React.FC<{ className?: string }> = ({ className }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { t } = useTranslation('common');
   const PaymentMethod = AVAILABLE_PAYMENT_METHODS_MAP[gateway];
-  const Component = PaymentMethod?.component ?? StripePayment;
+  const Component = PaymentMethod?.component ?? BankTransfer;
   return (
     <div className={className}>
       {errorMessage ? (
