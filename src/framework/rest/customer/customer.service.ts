@@ -24,7 +24,7 @@ class Customer extends CoreApi {
   }
   updateCustomer(input: CustomerType) {    
     return this.http
-      .put(`${API_ENDPOINTS.ADDRESS}/${input._id}` , input)
+      .put(`${API_ENDPOINTS.CUSTOMERS}/${input._id}` , input)
       .then((res) => res.data);
   }
   contact(input: ContactType) {

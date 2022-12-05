@@ -19,7 +19,7 @@ const ProfilePage = () => {
         <ProfileContact
           userId={me?._id!}
           profileId={me?.profile?._id!}
-          contact={me?.profile?.contact!}
+          contact={me?.contact!}
         />
       </div>
 
