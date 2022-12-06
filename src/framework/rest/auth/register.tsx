@@ -46,15 +46,20 @@ const Register = () => {
       },
       {
         onSuccess: (data) => {
-          if (data?.token && data?.permissions?.length) {
-            Cookies.set(AUTH_TOKEN, data.token);
-            authorize(true);
-            closeModal();
-            return;
-          }
-          if (!data.token) {
-            setErrorMessage(t('error-credential-wrong'));
-          }
+          // console.log(data);
+          
+          // if (data?.token && data?.permissions?.length) {
+          //   Cookies.set(AUTH_TOKEN, data.token);
+          //   authorize(true);
+          //   closeModal();
+          //   return;
+          // }
+          
+          closeModal();
+          return;
+          // if (!data.token) {
+          //   setErrorMessage(t('error-credential-wrong'));
+          // }
         },
         onError: (error) => {
           const {

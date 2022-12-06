@@ -83,7 +83,6 @@ class Auth extends CoreApi {
       .then((res) => res.data);
   }
   register(input: RegisterUserInputType) {
-    console.log('hiiii', input);
     return this.http
       .post(API_ENDPOINTS.REGISTER, input)
       .then((res) => res.data);
