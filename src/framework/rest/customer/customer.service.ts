@@ -22,6 +22,16 @@ class Customer extends CoreApi {
       .post(API_ENDPOINTS.ADDRESS, input)
       .then((res) => res.data);
   }
+  addAddress(input: any) {
+    return this.http
+      .post(API_ENDPOINTS.ADDRESS, input)
+      .then((res) => res.data);
+  }
+  updateAddress(input: any) {    
+    return this.http
+      .put(`${API_ENDPOINTS.ADDRESS}/${input._id}`, input)
+      .then((res) => res.data);
+  }
   updateCustomer(input: CustomerType) {    
     return this.http
       .put(`${API_ENDPOINTS.CUSTOMERS}/${input._id}` , input)
@@ -30,9 +40,11 @@ class Customer extends CoreApi {
   contact(input: ContactType) {
     return this.http.post(API_ENDPOINTS.CONTACT, input).then((res) => res.data);
   }
-  deleteAddress({ _id }: { _id: string }) {
+  deleteAddress(id: any) {
+    console.log(id);
+    
     return this.http
-      .delete(`${API_ENDPOINTS.ADDRESS}/${_id}`)
+      .delete(`${API_ENDPOINTS.ADDRESS}/${id}`)
       .then((res) => res.data);
   }
 }
