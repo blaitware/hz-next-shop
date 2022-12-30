@@ -7,6 +7,7 @@ import LoginForm from '@components/auth/login-form';
 import { useAtom } from 'jotai';
 import { authorizationAtom } from '@store/authorization-atom';
 import { AUTH_TOKEN } from '@lib/constants';
+import { toast } from 'react-toastify';
 
 type FormValues = {
   email: string;
@@ -32,14 +33,17 @@ const Login = () => {
             Cookies.set(AUTH_TOKEN, data.token);
             authorize(true);
             closeModal();
+            toast.success(t('login-successful'));
             return;
           }
           if (!data.token) {
             setErrorMessage(t('error-credential-wrong'));
+            toast.error(errorMessage);
           }
         },
         onError: (error: any) => {
           console.log(error.message);
+          toast.error(error.message);
         },
       }
     );

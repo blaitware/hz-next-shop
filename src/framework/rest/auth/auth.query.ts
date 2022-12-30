@@ -10,6 +10,7 @@ import {
   SendOtpCodeInputType,
   SocialLoginInputType,
   UpdateContactInput,
+  VerifyEmailInputType,
   VerifyOtpInputType,
   VerifyPasswordInputType,
 } from './auth.service';
@@ -87,3 +88,8 @@ export const useVerifyOtpCodeMutation = () => {
     AuthService.verifyOtpCode(input)
   );
 };
+
+export const useVerifyEmailMutation = () => {
+  return useMutation((input: VerifyEmailInputType) =>
+    AuthService.verifyEmail(input))
+}

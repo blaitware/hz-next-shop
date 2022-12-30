@@ -10,6 +10,7 @@ import RegisterForm from '@components/auth/register-form';
 import { useAtom } from 'jotai';
 import { authorizationAtom } from '@store/authorization-atom';
 import { AUTH_TOKEN } from '@lib/constants';
+import { toast } from 'react-toastify';
 
 type FormValues = {
   name: string;
@@ -45,32 +46,26 @@ const Register = () => {
         password,
       },
       {
-        onSuccess: (data) => {
-          // console.log(data);
-          
-          // if (data?.token && data?.permissions?.length) {
-          //   Cookies.set(AUTH_TOKEN, data.token);
-          //   authorize(true);
-          //   closeModal();
-          //   return;
-          // }
-          
+        onSuccess: (data) => {          
+          toast.success(t('register-successful'));
           closeModal();
+          toast.success(data.message);
           return;
-          // if (!data.token) {
-          //   setErrorMessage(t('error-credential-wrong'));
-          // }
         },
-        onError: (error) => {
+        onError: (error) => {          
           const {
             response: { data },
           }: any = error ?? {};
-          Object.keys(data).forEach((field: any) => {
-            methods.setError(field, {
-              type: 'manual',
-              message: data[field][0],
+          if (data?.message) {
+            setErrorMessage(data?.message)
+          } else {
+            Object.keys(data).forEach((field: any) => {
+              methods.setError(field, {
+                type: 'manual',
+                message: data[field][0],
+              });
             });
-          });
+          }
         },
       }
     );

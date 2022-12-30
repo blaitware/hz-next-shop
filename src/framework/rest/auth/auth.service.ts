@@ -52,6 +52,9 @@ export type UpdateContactInput = {
   otp_id: string;
   user_id: string;
 };
+export type VerifyEmailInputType = {
+  emailToken: string;
+}
 
 class Auth extends CoreApi {
   login(input: LoginInputType) {
@@ -109,6 +112,11 @@ class Auth extends CoreApi {
     return this.http
       .post(API_ENDPOINTS.VERIFY_FORGET_PASSWORD, input)
       .then((res) => res.data);
+  }
+  verifyEmail(input: VerifyEmailInputType) {
+    return this.http
+      .post(API_ENDPOINTS.VERIFY_EMAIL, input)
+      .then((res) => res.data)
   }
 }
 
