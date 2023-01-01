@@ -14,8 +14,8 @@ export declare type Type = {
   icon: string;
   banners: Banner[];
   // products?: Maybe<ProductPaginator>;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 export declare type Coupon = {
   id: number | string;
@@ -27,8 +27,8 @@ export declare type Coupon = {
   amount: number;
   active_from: Date;
   expire_at: Date;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 export declare type Category = {
   id: number | string;
@@ -41,8 +41,8 @@ export declare type Category = {
   icon?: string;
   type: Type;
   products: Product[];
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 export declare type Attachment = {
   id?: number | string;
@@ -84,8 +84,8 @@ export declare type Product = {
   related_products?: Product[];
   quantity?: number;
   unit?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export declare type UserAddress = {
@@ -113,8 +113,8 @@ export declare type Order = {
   delivery_fee?: number;
   delivery_time: string;
   products: Product[];
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
   billing_address?: UserAddress;
   shipping_address?: UserAddress;
 };

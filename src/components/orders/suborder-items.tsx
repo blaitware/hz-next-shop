@@ -28,7 +28,7 @@ const SuborderItems: React.FC<SuborderItemsProps> = ({ items }) => {
       dataIndex: 'date',
       key: 'date',
       align: alignLeft,
-      render: (created_at: string) => dayjs(created_at).format('MMMM D, YYYY'),
+      render: (createdAt: string) => dayjs(createdAt).format('MMMM D, YYYY'),
     },
     {
       title: t('text-status'),

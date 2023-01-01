@@ -49,7 +49,7 @@ fragment ShopParts on Shop {
     state
     zip
   }
-  created_at
+  createdAt
 }
 
 query Shops(

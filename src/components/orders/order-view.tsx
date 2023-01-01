@@ -63,7 +63,7 @@ export default function OrderView({ order }: any) {
               {t('text-date')}
             </h3>
             <p className="text-sm text-body-dark">
-              {dayjs(order?.created_at).format('MMMM D, YYYY')}
+              {dayjs(order?.createdAt).format('MMMM D, YYYY')}
             </p>
           </div>
           <div className="py-4 px-5 border border-border-200 rounded shadow-sm">

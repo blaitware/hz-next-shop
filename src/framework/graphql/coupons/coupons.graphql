@@ -38,8 +38,8 @@ query Coupons($first: Int!, $page: Int) {
       amount
       active_from
       expire_at
-      created_at
-      updated_at
+      createdAt
+      updatedAt
       is_valid
     }
     paginatorInfo {

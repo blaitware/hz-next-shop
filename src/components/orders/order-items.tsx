@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import { Image } from '@components/ui/image';
 import { productPlaceholder } from '@lib/placeholders';
 
-const OrderItemList = (_: any, record: any) => {  
+const OrderItemList = (_: any, record: any) => {
   const { price } = usePrice({
     amount: record.unit_price,
   });
@@ -95,7 +95,7 @@ export const OrderItems = ({ products }: { products: any }) => {
       rowKey={(record: any) =>
         record.variation_option_id
           ? record.variation_option_id
-          : record.created_at
+          : record.createdAt
       }
       className="orderDetailsTable w-full"
       scroll={{ x: 350, y: 500 }}

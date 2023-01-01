@@ -39,6 +39,8 @@ export const PlaceOrderAction: React.FC = (props) => {
       pop,
     },
   ] = useAtom(checkoutAtom);
+  console.log(token, pop);
+  
   const [discount] = useAtom(discountAtom);
 
   useEffect(() => {
@@ -59,6 +61,12 @@ export const PlaceOrderAction: React.FC = (props) => {
     Number(discount)
   );
   const handlePlaceOrder = () => {
+    console.log('pop',pop);
+    
+    if (payment_gateway === 'BANK_TRANSFER' && !pop) {
+      setErrorMessage('Proof of Payment is required')
+      return;
+    }
     if (!customer_contact) {
       setErrorMessage('Contact Number Is Required');
       return;
@@ -125,6 +133,7 @@ export const PlaceOrderAction: React.FC = (props) => {
     shipping_address,
     delivery_time,
     available_items,
+    pop,
   ].every((item) => !isEmpty(item));
   return (
     <>

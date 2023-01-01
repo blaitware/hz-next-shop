@@ -17,7 +17,7 @@ fragment OrderParts on Order {
     name
     price
     sale_price
-    created_at
+    createdAt
     image {
       id
       original
@@ -68,8 +68,8 @@ fragment OrderParts on Order {
     zip
     street_address
   }
-  created_at
-  updated_at
+  createdAt
+  updatedAt
 }
 query Orders(
   $tracking_number: String

@@ -11,7 +11,7 @@ type OrderCardProps = {
 
 const OrderCard: React.FC<OrderCardProps> = ({ onClick, order, isActive }) => {
   const { t } = useTranslation('common');
-  const { id, status, created_at, delivery_time } = order;
+  const { id, status, createdAt, delivery_time } = order;
   const { price: amount } = usePrice({
     amount: order?.amount,
   });
@@ -48,7 +48,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ onClick, order, isActive }) => {
           </span>
           <span className="me-auto">:</span>
           <span className="ms-1">
-            {dayjs(created_at).format('MMMM D, YYYY')}
+            {dayjs(createdAt).format('MMMM D, YYYY')}
           </span>
         </p>
         <p className="text-sm text-heading w-full flex justify-between items-center mb-4 last:mb-0">
