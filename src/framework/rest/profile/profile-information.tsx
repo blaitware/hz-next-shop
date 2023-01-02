@@ -21,7 +21,7 @@ const ProfileInformation = () => {
         profile: {
           _id: me?.profile?._id,
           ...values.profile,
-          avatar: values.profile.avatar?.[0],
+          avatar: values.profile.avatar,
         },
       },
       {
