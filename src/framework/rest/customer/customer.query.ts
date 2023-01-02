@@ -38,9 +38,10 @@ export const useContactMutation = () => {
     onSuccess: (data) => {
       if (data.success) {
         toast.success(t(data.message));
-      } else {
-        toast.error(t(data.message));
       }
     },
+    onError: () => {
+      toast.error('There was an error sending your message');
+    }
   });
 };

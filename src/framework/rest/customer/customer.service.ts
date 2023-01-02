@@ -38,7 +38,7 @@ class Customer extends CoreApi {
       .then((res) => res.data);
   }
   contact(input: ContactType) {
-    return this.http.post(API_ENDPOINTS.CONTACT, input).then((res) => res.data);
+    return this.http.post(API_ENDPOINTS.CONTACT_US, input).then((res) => res.data);
   }
   deleteAddress(id: any) {
     console.log(id);
