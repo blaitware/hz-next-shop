@@ -60,9 +60,7 @@ export const PlaceOrderAction: React.FC = (props) => {
     },
     Number(discount)
   );
-  const handlePlaceOrder = () => {
-    console.log('pop',pop);
-    
+  const handlePlaceOrder = () => {    
     if (payment_gateway === 'BANK_TRANSFER' && !pop) {
       setErrorMessage('Proof of Payment is required')
       return;
@@ -75,10 +73,10 @@ export const PlaceOrderAction: React.FC = (props) => {
       setErrorMessage('Gateway Is Required');
       return;
     }
-    if (payment_gateway === 'STRIPE' && !token) {
-      setErrorMessage('Please Pay First');
-      return;
-    }    
+    // if (payment_gateway === 'STRIPE' && !token) {
+    //   setErrorMessage('Please Pay First');
+    //   return;
+    // }    
     
     let input = {
       //@ts-ignore
@@ -102,10 +100,10 @@ export const PlaceOrderAction: React.FC = (props) => {
         ...(shipping_address?.address && shipping_address.address),
       },
     };
-    if (payment_gateway === 'STRIPE') {
-      //@ts-ignore
-      input.token = token;
-    }
+    // if (payment_gateway === 'STRIPE') {
+    //   //@ts-ignore
+    //   input.token = token;
+    // }
     if (payment_gateway === 'BANK_TRANSFER') {
       //@ts-ignore
       input.pop = pop;
