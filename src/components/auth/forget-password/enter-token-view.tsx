@@ -7,12 +7,13 @@ import * as yup from 'yup';
 interface Props {
   onSubmit: (values: { token: string }) => void;
   loading: boolean;
+  value?: string
 }
 const schema = yup.object().shape({
   token: yup.string().required('error-password-required'),
 });
 
-const EnterTokenView = ({ onSubmit, loading }: Props) => {
+const EnterTokenView = ({ onSubmit, loading, value }: Props) => {
   const { t } = useTranslation('common');
   const {
     register,
@@ -28,6 +29,7 @@ const EnterTokenView = ({ onSubmit, loading }: Props) => {
         variant="outline"
         className="mb-5"
         error={t(errors.token?.message!)}
+        value={value}
       />
       <Button className="w-full h-11" loading={loading} disabled={loading}>
         {t('text-submit-token')}

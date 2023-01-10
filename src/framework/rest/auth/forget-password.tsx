@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useForgetPasswordMutation,
   useVerifyForgetPasswordTokenMutation,
@@ -19,7 +19,7 @@ const EnterNewPasswordView = dynamic(
   () => import('@components/auth/forget-password/enter-new-password-view')
 );
 
-const ForgetPassword = () => {
+const ForgetPassword = ({ code }: { code: string }) => {
   const { t } = useTranslation('common');
   const { openModal } = useModalAction();
   const { mutate: forgetPassword, isLoading } = useForgetPasswordMutation();
@@ -31,6 +31,12 @@ const ForgetPassword = () => {
   const [verifiedEmail, setVerifiedEmail] = useState('');
   const [verifiedToken, setVerifiedToken] = useState('');
 
+  useEffect(() => {
+    const email = localStorage.getItem('reset_email')
+    if(email) setVerifiedEmail(email)
+  }, [])
+  
+
   function handleEmailSubmit({ email }: { email: string }) {
     forgetPassword(
       {
@@ -40,6 +46,8 @@ const ForgetPassword = () => {
         onSuccess: (data) => {
           if (data.success) {
             setVerifiedEmail(email);
+            // console.log('veri', data.token, data.email);
+            localStorage.setItem('reset_email', data.email)
           } else {
             setErrorMsg(data?.message);
           }
@@ -74,6 +82,7 @@ const ForgetPassword = () => {
       {
         onSuccess: (data) => {
           if (data.success) {
+            localStorage.removeItem('reset_email')
             openModal('LOGIN_VIEW');
           } else {
             setErrorMsg(data?.message);
@@ -104,7 +113,7 @@ const ForgetPassword = () => {
         <EnterEmailView loading={isLoading} onSubmit={handleEmailSubmit} />
       )}
       {verifiedEmail && !verifiedToken && (
-        <EnterTokenView loading={verifying} onSubmit={handleTokenSubmit} />
+        <EnterTokenView loading={verifying} onSubmit={handleTokenSubmit} value={code} />
       )}
       {verifiedEmail && verifiedToken && (
         <EnterNewPasswordView

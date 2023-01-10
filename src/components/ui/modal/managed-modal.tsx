@@ -31,7 +31,7 @@ const ManagedModal = () => {
     <Modal open={isOpen} onClose={closeModal}>
       {view === 'LOGIN_VIEW' && <Login />}
       {view === 'REGISTER' && <Register />}
-      {view === 'FORGOT_VIEW' && <ForgotPassword />}
+      {view === 'FORGOT_VIEW' && <ForgotPassword code={data} />}
       {view === 'OTP_LOGIN' && <OtpLoginView />}
       {view === 'ADD_OR_UPDATE_ADDRESS' && <CreateOrUpdateAddressForm />}
       {view === 'ADD_OR_UPDATE_CHECKOUT_CONTACT' && (

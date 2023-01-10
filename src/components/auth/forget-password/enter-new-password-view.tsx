@@ -8,13 +8,14 @@ interface Props {
   onSubmit: (values: { password: string }) => void;
   loading: boolean;
 }
-const schema = yup.object().shape({
-  password: yup.string().required('error-password-required'),
-});
 
 const EnterNewPasswordView = ({ onSubmit, loading }: Props) => {
   const { t } = useTranslation('common');
-
+  
+  const schema = yup.object().shape({
+    password: yup.string().required(t('error-password-required')),
+  });
+  
   const {
     register,
     handleSubmit,
@@ -24,7 +25,7 @@ const EnterNewPasswordView = ({ onSubmit, loading }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <PasswordInput
-        label="text-password"
+        label={t("text-password")}
         {...register('password')}
         error={errors.password?.message}
         variant="outline"
