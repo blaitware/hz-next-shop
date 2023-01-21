@@ -73,13 +73,13 @@ export const verifiedTokenAtom = atom(
     return set(checkoutAtom, { ...prev, token: data });
   }
 );
-export const popAtom = atom(
-  (get) => get(checkoutAtom).pop,
-  (get, set, data: string) => {
-    const prev = get(checkoutAtom);
-    return set(checkoutAtom, { ...prev, pop: data });
-  }
-);
+// export const popAtom = atom(
+//   (get) => get(checkoutAtom).pop,
+//   (get, set, data: string) => {
+//     const prev = get(checkoutAtom);
+//     return set(checkoutAtom, { ...prev, pop: data });
+//   }
+// );
 export const customerContactAtom = atom(
   (get) => get(checkoutAtom).customer_contact,
   (get, set, data: string) => {

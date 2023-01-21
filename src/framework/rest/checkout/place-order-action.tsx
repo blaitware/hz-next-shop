@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   useCreateOrderMutation,
@@ -17,15 +17,15 @@ import {
   calculatePaidTotal,
   calculateTotal,
 } from '@store/quick-cart/cart.utils';
+import { PopContext } from '@components/ui/pop/pop.context';
 
 export const PlaceOrderAction: React.FC = (props) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { mutate: createOrder, isLoading: loading } = useCreateOrderMutation();
-
   const { data: orderStatusData } = useOrderStatusesQuery();
-
   const { items } = useCart();
+  const { pop } = useContext(PopContext);
   const [
     {
       billing_address,
@@ -35,12 +35,8 @@ export const PlaceOrderAction: React.FC = (props) => {
       verified_response,
       customer_contact,
       payment_gateway,
-      token,
-      pop,
     },
-  ] = useAtom(checkoutAtom);
-  console.log(token, pop);
-  
+  ] = useAtom(checkoutAtom);  
   const [discount] = useAtom(discountAtom);
 
   useEffect(() => {
@@ -79,7 +75,6 @@ export const PlaceOrderAction: React.FC = (props) => {
     // }    
     
     let input = {
-      //@ts-ignore
       products: available_items?.map((item) => formatOrderedProduct(item)),
       status: orderStatusData?.order_statuses?.data[0]?._id,
       amount: subtotal,
@@ -115,7 +110,9 @@ export const PlaceOrderAction: React.FC = (props) => {
       onSuccess: (order: any) => {        
         if (order?.tracking_number) {
           router.push(`${ROUTES.ORDERS}/${order?.tracking_number}`);
-        } else {
+        } else {          
+          // localStorage.removeItem('checkout')
+          localStorage.removeItem('pick-cart')
           router.push(`${ROUTES.ORDERS}`)
         }
       },
@@ -131,7 +128,6 @@ export const PlaceOrderAction: React.FC = (props) => {
     shipping_address,
     delivery_time,
     available_items,
-    pop,
   ].every((item) => !isEmpty(item));
   return (
     <>

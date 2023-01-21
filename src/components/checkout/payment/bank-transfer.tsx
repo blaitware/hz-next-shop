@@ -1,14 +1,12 @@
-import Button from '@components/ui/button';
-import { popAtom } from '@store/checkout';
-import { useAtom } from 'jotai';
 import { useTranslation } from 'next-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import { UploadIcon } from '@components/icons/upload-icon';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useUploadMutation } from '@framework/upload/use-upload.mutation';
 import Spinner from '@components/ui/loaders/spinner/spinner';
 import { CloseIcon } from '@components/icons/close-icon';
+import { PopContext } from '@components/ui/pop/pop.context';
 
 // ******
 const getPreviewImage = (value: any) => {
@@ -22,8 +20,9 @@ const getPreviewImage = (value: any) => {
 export function Uploader({ onChange, value, multiple }: any) {
   const { t } = useTranslation('common');
   const [files, setFiles] = useState<any[]>(getPreviewImage(value));
-  const [_, setPop] = useAtom(popAtom);
+  // const [_, setPop] = useAtom(popAtom);
   const { mutate: upload, isLoading: loading } = useUploadMutation();
+  const { setPop } = useContext(PopContext);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',

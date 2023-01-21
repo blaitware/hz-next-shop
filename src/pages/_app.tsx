@@ -15,6 +15,7 @@ import type { NextPage } from 'next';
 import { Provider as NextAuthProvider } from 'next-auth/client';
 import Search from '@components/ui/search/search';
 import { SearchProvider } from '@components/ui/search/search.context';
+import { PopProvider } from '@components/ui/pop/pop.context';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -33,26 +34,28 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <AppProviders pageProps={pageProps}>
       <SearchProvider>
-        <ModalProvider>
-          <CartProvider>
-            <NextAuthProvider>
-              <>
-                <DefaultSeo />
-                {Boolean(authProps) ? (
-                  <PrivateRoute>
-                    {getLayout(<Component {...pageProps} />)}
-                  </PrivateRoute>
-                ) : (
-                  getLayout(<Component {...pageProps} />)
-                )}
-                <ManagedModal />
-                <ManagedDrawer />
-                <ToastContainer autoClose={2000} theme="colored" />
-                <SocialLogin />
-              </>
-            </NextAuthProvider>
-          </CartProvider>
-        </ModalProvider>
+        <PopProvider>
+          <ModalProvider>
+            <CartProvider>
+              <NextAuthProvider>
+                <>
+                  <DefaultSeo />
+                  {Boolean(authProps) ? (
+                    <PrivateRoute>
+                      {getLayout(<Component {...pageProps} />)}
+                    </PrivateRoute>
+                  ) : (
+                    getLayout(<Component {...pageProps} />)
+                  )}
+                  <ManagedModal />
+                  <ManagedDrawer />
+                  <ToastContainer autoClose={2000} theme="colored" />
+                  <SocialLogin />
+                </>
+              </NextAuthProvider>
+            </CartProvider>
+          </ModalProvider>
+        </PopProvider>
       </SearchProvider>
     </AppProviders>
   );
