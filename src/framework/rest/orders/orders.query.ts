@@ -14,23 +14,27 @@ import {
   useQuery,
 } from 'react-query';
 import { OrderService } from './order.service';
+
+
 type PaginatedOrder = {
   data: Order[];
   paginatorInfo: any;
 };
-const fetchOrders = async ({
-  queryKey,
-  pageParam,
-}: QueryParamsType): Promise<PaginatedOrder> => {
-  const params = queryKey[1];
+
+const fetchOrders = async (pan:any): Promise<PaginatedOrder> => {
+  // const {
+  //   queryKey,
+  //   pageParam,
+  // }: QueryParamsType =pan
+  // const params = queryKey[1];
   let fetchedData: any = {};
-  if (pageParam) {
-    const response = await OrderService.fetchUrl(pageParam);
-    fetchedData = response.data;
-  } else {
-    const response = await OrderService.find(params as ParamsType);
-    fetchedData = response.data;
-  }
+  // if (pageParam) {
+  // } else {
+  //   const response = await OrderService.find(params as ParamsType);
+  //   fetchedData = response.data;
+  // }
+  const response = await OrderService.fetchUrl(`${API_ENDPOINTS.ORDERS}/user/${pan}`);
+  fetchedData = response.data;
   const { docs: data, ...rest } = fetchedData;  
 
   return { data, paginatorInfo: mapPaginatorData({ ...rest }) };
@@ -48,7 +52,7 @@ const useOrdersQuery = (
 ) => {
   return useInfiniteQuery<PaginatedOrder, Error>(
     [API_ENDPOINTS.ORDERS, params],
-    fetchOrders,
+    () => fetchOrders(params?.userId,),
     {
       ...options,
       getNextPageParam: ({ paginatorInfo }) => paginatorInfo.nextPageUrl,
@@ -57,6 +61,20 @@ const useOrdersQuery = (
 };
 
 export { useOrdersQuery, fetchOrders };
+  
+// export const fetchOrders = async (userId: string): Promise<PaginatedOrder> => {
+//   const response = await OrderService.fetchUrl(`${API_ENDPOINTS.ORDERS}/user/${userId}`);
+//   let fetchedData: any = {};
+//   const { docs: data, ...rest } = fetchedData;  
+//   return { data, paginatorInfo: mapPaginatorData({ ...rest }) };
+// }
+// export const useOrdersQuery = ({ userId }: { userId: string }) => {
+//   return useQuery<any, Error>(
+//     [],
+//     () => fetchOrders(userId),
+//     { getNextPageParam: ({ paginatorInfo }) => paginatorInfo.nextPageUrl },
+//   )
+// }
 
 export const fetchOrder = async (orderId: string) => {
   const response = await OrderService.findOne(

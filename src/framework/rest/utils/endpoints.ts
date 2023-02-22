@@ -9,6 +9,7 @@ export const API_ENDPOINTS: Record<string, string> = {
   TYPE: 'types',
   UPLOAD: 'attachments/images',
   ORDERS: 'orders',
+  USER_ORDERS: 'orders/user',
   ORDER_STATUS: 'order-status',
   LOGIN: 'token',
   SOCIAL_LOGIN: 'social-login-token',

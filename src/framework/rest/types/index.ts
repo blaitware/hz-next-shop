@@ -31,11 +31,13 @@ export type OrdersQueryOptionsType = {
   shop_id?: number;
   first?: number;
   page?: number;
+  userId?: string;
 };
 
 export type QueryParamsType = {
   queryKey: QueryKey;
   pageParam?: string;
+  userId?: string;
 };
 export type Banner = {
   title: string;
