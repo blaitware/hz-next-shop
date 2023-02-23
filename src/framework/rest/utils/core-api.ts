@@ -49,8 +49,11 @@ export class CoreApi {
   findAll() {
     return this.http.get(this._base_path);
   }
-  fetchUrl(url: string) {
+  fetchUrl(url: string) {    
     return this.http.get(url);
+  }
+  getUrl(url: string) {
+    return this.http.get(`${this._base_path}/${url}`)
   }
   postUrl(url: string, data: any) {
     return this.http.post(url, data);

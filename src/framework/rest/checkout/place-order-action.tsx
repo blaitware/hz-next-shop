@@ -107,11 +107,13 @@ export const PlaceOrderAction: React.FC = (props) => {
     delete input.billing_address.__typename;
     delete input.shipping_address.__typename;
     createOrder(input, {
-      onSuccess: (order: any) => {        
-        if (order?.tracking_number) {
-          router.push(`${ROUTES.ORDERS}/${order?.tracking_number}`);
+      onSuccess: (order: any) => {
+        if (order?.authorization_url) {
+          localStorage.removeItem('checkout')
+          localStorage.removeItem('pick-cart')
+          router.push(order.authorization_url);
         } else {          
-          // localStorage.removeItem('checkout')
+          localStorage.removeItem('checkout')
           localStorage.removeItem('pick-cart')
           router.push(`${ROUTES.ORDERS}`)
         }

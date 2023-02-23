@@ -2,7 +2,7 @@ import { RadioGroup } from '@headlessui/react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import Alert from '@components/ui/alert';
-import StripePayment from '@components/checkout/payment/stripe';
+import PaystackPayment from '@components/checkout/payment/paystack';
 import BankTransfer from '@components/checkout/payment/bank-transfer';
 import CashOnDelivery from '@components/checkout/payment/cash-on-delivery';
 import { useAtom } from 'jotai';
@@ -22,12 +22,12 @@ const AVAILABLE_PAYMENT_METHODS_MAP: Record<
   PaymentMethodName,
   PaymentMethodInformation
 > = {
-  // STRIPE: {
-  //   name: 'Stripe',
-  //   value: 'STRIPE',
-  //   icon: '/payment/stripe.png',
-  //   component: StripePayment,
-  // },
+  PAYSTACK: {
+    name: 'Paystack',
+    value: 'PAYSTACK',
+    icon: '/payment/paystack.png',
+    component: PaystackPayment,
+  },
   // CASH_ON_DELIVERY: {
   //   name: 'Cash On Delivery',
   //   value: 'CASH_ON_DELIVERY',

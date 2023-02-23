@@ -20,6 +20,8 @@ export default function SignOut() {
     mutate(undefined, {
       onSuccess: () => {
         Cookies.remove(AUTH_TOKEN);
+        localStorage.removeItem('checkout')
+        localStorage.removeItem('pick-cart')
         authorize(false);
         router.push('/');
       },

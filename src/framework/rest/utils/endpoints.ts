@@ -9,6 +9,7 @@ export const API_ENDPOINTS: Record<string, string> = {
   TYPE: 'types',
   UPLOAD: 'attachments/images',
   ORDERS: 'orders',
+  VERIFY: 'paystack-verify',
   USER_ORDERS: 'orders/user',
   ORDER_STATUS: 'order-status',
   LOGIN: 'token',

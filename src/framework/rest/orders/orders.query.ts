@@ -113,7 +113,11 @@ type OrderCreateInputType = {
 };
 
 export const useCreateOrderMutation = () => {
-  return useMutation((input: OrderCreateInputType) =>    
+  return useMutation((input: OrderCreateInputType) =>
     OrderService.create(input)
   );
 };
+
+export const useVerifyOrderMutation = () => {
+  return useMutation((trxref: string) => OrderService.getUrl(`${API_ENDPOINTS.VERIFY}/?trxref=${trxref}`))
+}

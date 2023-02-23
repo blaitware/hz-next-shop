@@ -59,7 +59,7 @@ const StripeForm: React.FC = () => {
     </form>
   );
 };
-const StripePayment: React.FC = () => {
+const PaystackPayment: React.FC = () => {
   return (
     <Elements stripe={getStripe()}>
       <StripeForm />
@@ -67,4 +67,4 @@ const StripePayment: React.FC = () => {
   );
 };
 
-export default StripePayment;
+export default PaystackPayment;

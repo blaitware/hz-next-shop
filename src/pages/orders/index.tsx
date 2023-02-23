@@ -5,9 +5,33 @@ import noResult from '@assets/no-result.svg';
 import DashboardSidebar from '@components/dashboard/sidebar';
 import Orders from '@framework/orders/orders';
 import { getLayout as getSiteLayout } from '@components/layouts/layout';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useVerifyOrderMutation } from '@framework/orders/orders.query';
+import { toast } from 'react-toastify';
+import { ROUTES } from '@lib/routes';
 export { getStaticProps } from '@framework/ssr/common';
 
 export default function OrdersPage() {
+  const router = useRouter()
+  const { mutate: verifyOrder, isLoading: loading } = useVerifyOrderMutation()
+  useEffect(() => {
+    if (router.query.trxref) {
+      verifyOrder(
+        router.query.trxref as string,
+        {
+          onSuccess: (order: any) => {
+            toast.success('Payment verified, Order processing')
+          },
+          onError: (error: any) => {
+            toast.error(error?.response?.data?.message)
+          }
+        }
+      )
+      router.push(`${ROUTES.ORDERS}`)
+    }
+  }, [])
+  
   return <Orders />;
 }
 
