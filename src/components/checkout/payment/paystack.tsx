@@ -61,9 +61,7 @@ const StripeForm: React.FC = () => {
 };
 const PaystackPayment: React.FC = () => {
   return (
-    <Elements stripe={getStripe()}>
-      <StripeForm />
-    </Elements>
+    <></>
   );
 };
 
